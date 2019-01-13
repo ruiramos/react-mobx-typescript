@@ -1,5 +1,5 @@
 import React, { Component, SFC } from 'react';
-import { Todo } from './types.d';
+import {observer} from 'mobx-react';
 
 type Props = {
   task: string,
@@ -27,4 +27,4 @@ const TodoView: SFC<Props> = ({index, task, isComplete, toggleDone, cancelTodo})
   );
 }
 
-export default TodoView;
+export default observer(TodoView);

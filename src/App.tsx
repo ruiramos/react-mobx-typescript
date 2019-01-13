@@ -19,7 +19,7 @@ class App extends Component <AppProps, AppState> {
   render() {
     return (
       <div className="App">
-        <h1>TodoList</h1>
+        <h1>TodoList - mobx version</h1>
         <p>This is what you have left to do:</p>
         
         <div className="todoList">
