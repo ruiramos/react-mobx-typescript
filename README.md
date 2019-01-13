@@ -1,6 +1,9 @@
-# react-typescript-mobx
+# react-mobx-typescript
 
-Simple Todo list app with React, Typescript and Mobx
+
+Simple Todo list app with React, Typescript and Mobx.
+
+There's also a version using [Mobx State Tree](https://github.com/ruiramos/react-mobx-typescript/tree/mst).
 
 ---
 
