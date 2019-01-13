@@ -1,25 +1,24 @@
 import React, { Component, SFC } from 'react';
-import { Todo } from './types.d';
+import {Todo} from './types.d';
+import {observer} from 'mobx-react';
 
 type Props = {
-  task: string,
-  isComplete: boolean,
+  todo: Todo,
   index: number,
-  toggleDone: (index: number) => void,
   cancelTodo: (index: number) => void
 }
 
-const TodoView: SFC<Props> = ({index, task, isComplete, toggleDone, cancelTodo}) => {
-  let classValue = isComplete ? 'done' : 'active';
+const TodoView: SFC<Props> = ({index, todo, cancelTodo}) => {
+  let classValue = todo.isComplete ? 'done' : 'active';
   return (
     <div className={classValue + ' todoItem'}>
       <label>
         <input 
             type="checkbox"
-            checked={isComplete}
-            onChange={() => toggleDone(index)}
+            checked={todo.isComplete}
+            onChange={() => todo.toggleDone()}
           />
-        <span>{task}</span>
+        <span>{todo.task}</span>
       </label>
       <button className="btn-cancel" onClick={() => cancelTodo(index)}>Cancel</button>
         
@@ -27,4 +26,4 @@ const TodoView: SFC<Props> = ({index, task, isComplete, toggleDone, cancelTodo})
   );
 }
 
-export default TodoView;
+export default observer(TodoView);

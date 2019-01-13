@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, SFC } from 'react';
 import './App.css';
 import TodoView from './TodoView'
 import {observer} from 'mobx-react';
-import {AppProps, AppState, TodosShown} from './types.d';
+import {AppState, TodosShown} from './types.d';
+import { Store } from './models';
 
-class App extends Component <AppProps, AppState> {
-  constructor(props: AppProps){
+type Props = {
+  store: typeof Store.Type
+}
+
+class App extends Component <Props, AppState> {
+  constructor(props: Props){
     super(props);
 
     this.state = {
@@ -37,17 +42,17 @@ class App extends Component <AppProps, AppState> {
 
         <div className="todoButtons buttonGroup">
           <button 
-            className={this.props.state.show === TodosShown.All ? 'active' : ''}
+            className={this.props.store.show === TodosShown.All ? 'active' : ''}
             onClick={() => this.handleTodosShown(TodosShown.All)}>
             Show all
           </button>
           <button
-            className={this.props.state.show === TodosShown.Todo ? 'active' : ''}
+            className={this.props.store.show === TodosShown.Todo ? 'active' : ''}
             onClick={() => this.handleTodosShown(TodosShown.Todo)}>
             Show todo
           </button>
           <button
-            className={this.props.state.show === TodosShown.Done ? 'active' : ''}
+            className={this.props.store.show === TodosShown.Done ? 'active' : ''}
             onClick={() => this.handleTodosShown(TodosShown.Done)}>
             Show done
           </button>
@@ -58,19 +63,18 @@ class App extends Component <AppProps, AppState> {
   }
 
   renderTodos(){
-    const todosFiltered = this.props.state.show === TodosShown.All ?
-      this.props.state.todos : 
-      this.props.state.todos.filter(todo => 
-        todo.isComplete === (this.props.state.show === TodosShown.Done)
+    const todosFiltered = this.props.store.show === TodosShown.All ?
+      this.props.store.todos : 
+      this.props.store.todos.filter(todo => 
+        todo.isComplete === (this.props.store.show === TodosShown.Done)
       );
 
     return todosFiltered.map((todo, idx) => 
       <TodoView 
         key={idx} 
-        index={this.props.state.todos.indexOf(todo)}
-        toggleDone={this.props.toggleDone}
-        cancelTodo={this.props.cancelTodo}
-        {...todo} 
+        index={this.props.store.todos.indexOf(todo)}
+        todo={todo} 
+        cancelTodo={this.props.store.cancelTodo}
        />
      )
   }
@@ -80,13 +84,13 @@ class App extends Component <AppProps, AppState> {
   }
 
   handleTodosShown(selected: TodosShown){
-    this.props.setShown(selected);
+    this.props.store.setShown(selected);
   }
 
   addTodo(e: React.FormEvent){
     e.preventDefault();
     if(!this.state.todoValue) return;
-    this.props.addTodo(this.state.todoValue);
+    this.props.store.addTodo(this.state.todoValue);
     this.setState({todoValue: ''});
   }
 }

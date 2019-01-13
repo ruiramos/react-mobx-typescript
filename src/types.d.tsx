@@ -1,6 +1,7 @@
 export type Todo = {
   task: string
-  isComplete: boolean
+  isComplete: boolean,
+  toggleDone: () => void
 }
 
 export enum TodosShown {
@@ -11,15 +12,10 @@ export enum TodosShown {
 
 export type AppGlobalState = {
   todos: Array<Todo>,
-  show: TodosShown
-}
-
-export type AppProps = {
-  state: AppGlobalState,
-  addTodo: (todo:string) => void,
-  setShown: (selected: TodosShown) => void,
-  toggleDone: (i: number) => void,
-  cancelTodo: (i: number) => void
+  show: TodosShown,
+  addTodo: (task: string) => void,
+  setShown: (index: number) => void,
+  cancelTodo: (index: number) => void
 }
 
 export type AppState = {
