@@ -24,7 +24,7 @@ class App extends Component <Props, AppState> {
   render() {
     return (
       <div className="App">
-        <h1>TodoList</h1>
+        <h1>TodoList - MST version</h1>
         <p>This is what you have left to do:</p>
         
         <div className="todoList">

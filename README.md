@@ -1,3 +1,9 @@
+# react-typescript-mobx
+
+Simple Todo list app with React, Typescript and Mobx State Tree
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
