@@ -10,14 +10,6 @@ export enum TodosShown {
   Done
 }
 
-export type AppGlobalState = {
-  todos: Array<Todo>,
-  show: TodosShown,
-  addTodo: (task: string) => void,
-  setShown: (index: number) => void,
-  cancelTodo: (index: number) => void
-}
-
 export type AppState = {
   todoValue: string
 }
