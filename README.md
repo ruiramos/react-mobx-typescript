@@ -1,4 +1,4 @@
-# react-typescript-mobx
+# react-mobx-typescript
 
 Simple Todo list app with React, Typescript and Mobx State Tree
 
